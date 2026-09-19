@@ -50,7 +50,9 @@ const cardsProjetos = projetos.map(function (projeto) {
         <article class="card">
             <h3>${projeto.titulo}</h3>
             <p>${projeto.descricao}</p>
-            <button class="btn-detalhes" type="button">
+            <button class="btn-detalhes" type="button"
+            data-projeto="${projeto.titulo}"
+            >
             Ver detalhes
             </button>
         </article>
@@ -85,6 +87,19 @@ function carregarPagina() {
         conteudo.innerHTML = `
             <h2>Contato</h2>
             <p>Entre em contato conosco.</p>
+            <form id="form-contato" novalidate>
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome">
+                <small class="mensagem-erro" id="erro-nome"></small>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <small class="mensagem-erro" id="erro-email"></small>
+            </div>
+            <button type="submit">enviar</button>
+            </form>
         `;
 
     } else {
@@ -107,3 +122,25 @@ carregarPagina();
 // Quando o usuário clica em outro link e o hash muda,
 // carregarPagina é executada novamente para atualizar o conteúdo.
 window.addEventListener("hashchange", carregarPagina);
+
+/*
+DELEGAÇÃO DE EVENTOS
+
+O listener fica no elemento pai #conteudo.
+Quando ocorre um clique dentro dele, event.target identifica
+qual elemento foi realmente clicado.
+
+Se o elemento possuir a classe btn-detalhes,
+o JavaScript acessa data-projeto através de dataset.projeto.
+
+Isso é útil porque os botões dos cards são criados
+dinamicamente pelo JavaScript.
+*/
+
+conteudo.addEventListener("click", function (event) {
+    if (event.target.classList.contains("btn-detalhes")) {
+        const nomeprojeto = event.target.dataset.projeto;
+
+        alert(`Você selecionou o projeto: ${nomeprojeto}`);
+    }
+});
