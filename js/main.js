@@ -14,6 +14,8 @@ sem precisar abrir outro arquivo HTML.
 */
 // Procura no DOM o elemento que possui o id="conteudo".
 // Esse <main> será a área onde o JavaScript vai trocar os conteúdos da SPA.
+import { salvarDados, recuperarDados } from "./storage.js";
+import { validarEmail } from "./validacao.js";
 const conteudo = document.querySelector("#conteudo");
 
 /*
@@ -101,6 +103,29 @@ function carregarPagina() {
             <button type="submit">enviar</button>
             </form>
         `;
+        /*
+PERSISTÊNCIA COM LOCALSTORAGE
+
+1. O formulário é validado antes de salvar os dados.
+2. formularioValido controla se existem erros.
+3. localStorage.setItem() salva nome e e-mail no navegador.
+4. Os dados continuam armazenados mesmo após atualizar a página.
+5. localStorage.getItem() recupera os valores salvos.
+6. A propriedade .value coloca os valores novamente nos inputs.
+
+Assim, a aplicação consegue manter informações no navegador
+mesmo depois que a página é atualizada.
+*/
+/*4. localStorage.getItem() recupera a string.
+5. JSON.parse() transforma a string novamente em objeto.
+6. Acessamos dadosUsuario.nome e dadosUsuario.email.
+7. .value coloca os dados novamente nos inputs.*/
+const dadosUsuario = recuperarDados();
+
+if (dadosUsuario) {
+    document.querySelector("#nome").value = dadosUsuario.nome;
+    document.querySelector("#email").value = dadosUsuario.email;
+}
 
     } else {
 
@@ -143,4 +168,103 @@ conteudo.addEventListener("click", function (event) {
 
         alert(`Você selecionou o projeto: ${nomeprojeto}`);
     }
+});
+
+conteudo.addEventListener("submit", function (event) {
+    if (event.target.id === "form-contato") {
+        event.preventDefault();
+
+        const nome = document.querySelector("#nome");
+        const email = document.querySelector("#email");
+
+        const erroNome = document.querySelector("#erro-nome");
+        const erroEmail = document.querySelector("#erro-email");
+
+
+
+        // Começamos considerando que o formulário está válido
+        let formularioValido = true;
+
+        // Validação do nome
+        if (nome.value.trim() === "") {
+            erroNome.textContent = "O nome é obrigatório.";
+
+            nome.classList.add("campo-erro");
+            nome.classList.remove("campo-sucesso");
+
+            formularioValido = false;
+        } else {
+            erroNome.textContent = "";
+
+            nome.classList.add("campo-sucesso");
+            nome.classList.remove("campo-erro");
+        }
+
+        // Validação do e-mail
+        if (email.value.trim() === "") {
+            erroEmail.textContent = "O e-mail é obrigatório.";
+
+            email.classList.add("campo-erro");
+            email.classList.remove("campo-sucesso");
+
+            formularioValido = false;
+
+       } else if (!validarEmail(email.value)) {
+            erroEmail.textContent = "Digite um e-mail válido.";
+
+            email.classList.add("campo-erro");
+            email.classList.remove("campo-sucesso");
+
+            formularioValido = false;
+
+        } else {
+            erroEmail.textContent = "";
+
+            email.classList.add("campo-sucesso");
+            email.classList.remove("campo-erro");
+        }
+
+        console.log("Formulário válido:", formularioValido);
+/*PERSISTÊNCIA DE OBJETOS COM LOCALSTORAGE
+
+SALVAR:
+1. Criamos um objeto com os dados do formulário.
+2. JSON.stringify() transforma o objeto em string.
+3. localStorage.setItem() armazena essa string.*/
+        if (formularioValido) {
+
+    const dadosUsuario = {
+        nome: nome.value.trim(),
+        email: email.value.trim()
+    };
+
+ salvarDados(dadosUsuario);
+
+    Swal.fire({
+    title: "Sucesso!",
+    text: "Dados salvos com sucesso!",
+    icon: "success",
+    confirmButtonText: "OK"
+    /*
+BIBLIOTECA EXTERNA - SWEETALERT2
+
+A biblioteca SweetAlert2 foi importada por CDN no index.html.
+
+Swal.fire() substitui o alert() padrão por uma
+notificação visual mais personalizada.
+
+A biblioteca cuida apenas da apresentação da mensagem.
+A validação, os eventos, o DOM e o localStorage continuam
+sendo controlados pelo JavaScript da aplicação.
+*/
+
+});
+
+/*Fluxo:
+objeto → stringify → localStorage
+localStorage → getItem → parse → objeto
+*/
+
+}
+}
 });
