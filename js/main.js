@@ -1,4 +1,26 @@
 /*
+MODULARIZAÇÃO DA APLICAÇÃO
+
+main.js
+- Coordena a aplicação
+- Controla a SPA, DOM e eventos
+
+storage.js
+- Salva dados no localStorage
+- Recupera dados do localStorage
+- Trabalha com JSON
+
+validacao.js
+- Valida o formato do e-mail
+
+Os módulos utilizam export e import para compartilhar funções.
+
+Objetivo:
+separar responsabilidades e facilitar
+a leitura, manutenção e evolução do projeto.
+*/
+
+/*
 SPA COM ROTEAMENTO POR HASH
 
 1. O usuário clica em um link, como #projetos.
@@ -180,7 +202,7 @@ conteudo.addEventListener("submit", function (event) {
         const erroNome = document.querySelector("#erro-nome");
         const erroEmail = document.querySelector("#erro-email");
 
-
+        
 
         // Começamos considerando que o formulário está válido
         let formularioValido = true;
