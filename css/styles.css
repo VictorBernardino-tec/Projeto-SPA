@@ -65,3 +65,10 @@ header{
 
 }
 body{background-color:blanchedalmond}
+
+.imagem-destaque {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 1rem;
+}

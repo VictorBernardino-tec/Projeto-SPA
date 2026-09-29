@@ -38,6 +38,9 @@ sem precisar abrir outro arquivo HTML.
 // Esse <main> será a área onde o JavaScript vai trocar os conteúdos da SPA.
 import { salvarDados, recuperarDados } from "./storage.js";
 import { validarEmail } from "./validacao.js";
+import imagemAcaoSocial from "url:../images/acao-social.webp";
+
+
 const conteudo = document.querySelector("#conteudo");
 
 const botaoContraste = document.querySelector("#botao-contraste");
@@ -188,18 +191,23 @@ if (dadosUsuario) {
     document.querySelector("#email").value = dadosUsuario.email;
 }
 
-    } else {
+} else {
 
-        // Se não for #projetos nem #contato,
-        // mostra a página inicial.
-        conteudo.innerHTML = `
-            <h2>Início</h2>
-            <p>Bem-vindo à página inicial.</p>
-        `;
-    }
+    // Se não for #projetos nem #contato,
+    // mostra a página inicial.
+    conteudo.innerHTML = `
+        <h2>Início</h2>
+        <p>Bem-vindo à página inicial.</p>
+
+        <img
+            src="${imagemAcaoSocial}"
+            alt="Ação social promovendo inclusão e apoio à comunidade"
+            loading="lazy"
+            class="imagem-destaque"
+        >
+    `;
 }
-
-
+}
 // Executa a função quando a página é carregada pela primeira vez.
 carregarPagina();
 
