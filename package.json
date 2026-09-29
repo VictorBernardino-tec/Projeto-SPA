@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "parcel html/index.html",
+    "build": "parcel build html/index.html --dist-dir dist --public-url ./"
+  },
+
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
+}
