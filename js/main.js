@@ -40,6 +40,35 @@ import { salvarDados, recuperarDados } from "./storage.js";
 import { validarEmail } from "./validacao.js";
 const conteudo = document.querySelector("#conteudo");
 
+const botaoContraste = document.querySelector("#botao-contraste");
+
+function atualizarContraste() {
+    const contrasteAtivo =
+        document.body.classList.contains("alto-contraste");
+
+    botaoContraste.setAttribute(
+        "aria-pressed",
+        contrasteAtivo
+    );
+
+    localStorage.setItem(
+        "altoContraste",
+        contrasteAtivo
+    );
+}
+
+botaoContraste.addEventListener("click", function () {
+    document.body.classList.toggle("alto-contraste");
+    atualizarContraste();
+});
+
+const contrasteSalvo =
+    localStorage.getItem("altoContraste");
+
+if (contrasteSalvo === "true") {
+    document.body.classList.add("alto-contraste");
+    botaoContraste.setAttribute("aria-pressed", "true");
+}
 /*
 TEMPLATES DINÂMICOS
 
@@ -113,14 +142,24 @@ function carregarPagina() {
             <p>Entre em contato conosco.</p>
             <form id="form-contato" novalidate>
             <div>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome">
-                <small class="mensagem-erro" id="erro-nome"></small>
+          <label for="nome">Nome:</label>
+          <input
+          type="text"
+          id="nome"
+          name="nome" 
+          aria-describedby="erro-nome"
+>
+<small class="mensagem-erro" id="erro-nome"></small>
             </div>
             <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-                <small class="mensagem-erro" id="erro-email"></small>
+               <label for="email">E-mail:</label>
+               <input
+               type="email"
+               id="email"
+               name="email"       
+               aria-describedby="erro-email"
+>
+<small class="mensagem-erro" id="erro-email"></small>
             </div>
             <button type="submit">enviar</button>
             </form>
@@ -213,6 +252,7 @@ conteudo.addEventListener("submit", function (event) {
 
             nome.classList.add("campo-erro");
             nome.classList.remove("campo-sucesso");
+            nome.setAttribute("aria-invalid", "true");
 
             formularioValido = false;
         } else {
@@ -220,6 +260,7 @@ conteudo.addEventListener("submit", function (event) {
 
             nome.classList.add("campo-sucesso");
             nome.classList.remove("campo-erro");
+            nome.setAttribute("aria-invalid", "false");
         }
 
         // Validação do e-mail
@@ -228,6 +269,7 @@ conteudo.addEventListener("submit", function (event) {
 
             email.classList.add("campo-erro");
             email.classList.remove("campo-sucesso");
+            email.setAttribute("aria-invalid", "true");
 
             formularioValido = false;
 
@@ -236,6 +278,7 @@ conteudo.addEventListener("submit", function (event) {
 
             email.classList.add("campo-erro");
             email.classList.remove("campo-sucesso");
+            email.setAttribute("aria-invalid", "true");
 
             formularioValido = false;
 
@@ -244,6 +287,7 @@ conteudo.addEventListener("submit", function (event) {
 
             email.classList.add("campo-sucesso");
             email.classList.remove("campo-erro");
+            email.setAttribute("aria-invalid", "false");
         }
 
         console.log("Formulário válido:", formularioValido);
