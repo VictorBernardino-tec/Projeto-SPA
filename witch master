@@ -1,0 +1,19 @@
+*   [33m63f49df[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m Merge pull request #3 from VictorBernardino-tec/feature/acessibilidade
+[31m|[m[32m\[m  
+[31m|[m *   [33m927896f[m[33m ([m[1;31morigin/feature/acessibilidade[m[33m)[m Merge branch 'develop' into feature/acessibilidade
+[31m|[m [33m|[m[31m\[m  
+[31m|[m [33m|[m[31m/[m  
+[31m|[m[31m/[m[33m|[m   
+* [33m|[m   [33mc92cad8[m Merge pull request #4 from VictorBernardino-tec/feature/otimizacao
+[35m|[m[36m\[m [33m\[m  
+[35m|[m * [33m|[m [33mb52681c[m[33m ([m[1;31morigin/feature/otimizacao[m[33m, [m[1;32mfeature/otimizacao[m[33m)[m feat: otimiza build e recursos da aplicação
+[35m|[m[35m/[m [33m/[m  
+[35m|[m * [33md94ce56[m[33m ([m[1;32mfeature/acessibilidade[m[33m)[m feat: implementa melhorias de acessibilidade
+[35m|[m[35m/[m  
+*   [33m7d2a0ef[m Merge pull request #2 from VictorBernardino-tec/feature/documentacao
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m3f90805[m[33m ([m[1;31morigin/feature/documentacao[m[33m, [m[1;32mfeature/documentacao[m[33m)[m docs: adiciona documentação do projeto
+[1;31m|[m[1;31m/[m  
+* [33m153f8eb[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m documenta modularização da aplicação
+* [33mc41425d[m feat: valida e salva os dados do formulário de contato
+* [33m3f1a59a[m feat: adiciona formulário de contato e seleção de projetos
