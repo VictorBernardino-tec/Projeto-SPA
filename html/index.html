@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +9,21 @@
     <header>
     <h1>Minha Aplicação SPA</h1>
 
-    <nav>
+   <nav aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#projetos">Projetos</a>
         <a href="#contato">Contato</a>
     </nav>
+    <button
+    id="botao-contraste"
+    type="button"
+    aria-pressed="false"
+>
+    Alto contraste
+</button>
 </header>
 
-<main id="conteudo">
+<main id="conteudo" aria-live="polite">
     <h2>Início</h2>
     <p>Bem-vindo à página inicial.</p>
 </main>
