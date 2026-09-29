@@ -99,7 +99,7 @@ const projetos = [
         descricao: "Apoio ao aprendizado e à educação."
     }
 ];
-console.log(projetos);
+
 
 const cardsProjetos = projetos.map(function (projeto) {
     return `
@@ -115,7 +115,7 @@ const cardsProjetos = projetos.map(function (projeto) {
     `;
 }).join("");
 
-console.log(cardsProjetos);
+
 
 // Função responsável por verificar a URL
 // e decidir qual conteúdo deve aparecer na página.
@@ -298,7 +298,7 @@ conteudo.addEventListener("submit", function (event) {
             email.setAttribute("aria-invalid", "false");
         }
 
-        console.log("Formulário válido:", formularioValido);
+        
 /*PERSISTÊNCIA DE OBJETOS COM LOCALSTORAGE
 
 SALVAR:
